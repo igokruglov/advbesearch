@@ -1,0 +1,127 @@
+ 0.11.0		Added functions for deleted entries.
+ 		You can now search for deleted entries.
+ 		Deleted entries will get two additional buttons in the result list.
+ 		The first one simply undeletes the entry.
+ 		The second one undeletes the entry and opens a backend form to edit the undeleted entry.
+ 		After saving you will return to the result listing you called the editing form from.
+ 		Added corresponding language labels.
+ 		Fixed some bugs.
+
+ 0.10.1		Added Danish translation. (Thanx to Peter Klein)
+
+ 0.10.0		Fixed some minor bugs.
+		Added locallang settings to make the module aware of BE user language settings. (Thanx to Paolo Cojazzi)
+		Currently there are English, German and Italian settings available.
+		Feel free to translate other languages and send me your translations via PM.
+
+ 0.9.1		Added processed fieldnames as header for the CSV output.
+		Added User- and Group-TSconfig values to enable/disable parts of the form.
+		advBESearch {
+		  disableTopCheckboxes = 1
+		  disableStoreControl = 1
+		  disableSelectATable = 1
+		  disableSelectFields = 1
+		  disableGroupBy = 1
+		  disableOrderBy = 1
+		  disableLimit = 1
+		  disableShowSQLQuery = 1
+		}
+
+ 0.9.0		Added another hook to insert stuff before the result table.
+		Added some buttons for browsing results by setting the limit and submitting the form via JacaScript.
+		Labels of the result table are now displayed correctly when selecting "use formatted strings".
+
+ 0.8.5		Fixed a bug with an infinite loop occurring when DB relation fields are related to more than one table.
+
+ 0.8.4		Inserted a checkbox to switch the sorting of options in selectboxes from value to label.
+		Replaced while loops using foreach instead for better performance with long loops.
+
+ 0.8.3		Fixed a a bug with the disable brackets checkbox that forced the user to refresh in order to remove the brackets.
+
+ 0.8.2		Added support for the TCA ctrl "label_alt" in result lists.
+		Added a checkbox to disable the use of original values in brackets as prefix for labelled results..
+
+ 0.8.1		Fixed some bugs with datetime, time and date recognition.
+
+ 0.8.0		Added support for the TCA ctrl "label_alt" so that entries in selectboxes are labelled correctly if the original label field is empty.
+
+ 0.7.1		Fixed a bug with date fields displayed as datettimefields in querymaker and results
+
+ 0.7.0		Added the possibility to use hooks inside the queryMaker.
+		Added a first hook for additional Buttons in the result row display.
+		This way the user can create additional Buttons like "create new related record" and have them prefilled with values taken from the result.
+                                Example: When displaying results from fe_users in situtations you might want to assign the user as owner for different new entries in other tables as well.
+
+ 0.6.3		Fixed a bug with selected values not marked as selected anymore.
+		Added DB-mounts in the taskcenter for result lists of non admin users.
+		Added the checkbox setting for labelled results to the edit query link in the taskcenter.
+		Removed some unnecessary <br /> tags from the result list.
+
+ 0.6.2		Fixed a bug with a surplus use of getPagePermsClause for non admin users.
+		Selectboxes and results for DB relations will now be labelled correctly as long as the related record is inside the DB-mounts of the BE-user.
+
+ 0.6.1		Fixed a bug with missing function getTreeList for non admin users.
+
+ 		Changed the "Save to action" behaviour so that only admin users can save to actions while non admin users can only save inside their session.
+ 		The actions in the Taskcenter will still be available for everybody.
+
+ 0.6.0		Added a replacement class to make search queries available as actions in the user task center.
+ 		This will replace the original query-action based on the DB check extension.
+ 		Simply create an action in the root of your website, then create a query and save it to the action. This way you can assign predefined queries to different users and groups.
+ 		Be sure to install the complete taskcenter and especially sys_action first if you want to use it.
+ 		If you installed Advanced Searchform before sys_actions you will have to remove it and reinstall it to make sure it overrides the sys_action class.
+ 		The Searchform itself will still work without the taskcenter of course .
+
+ 0.5.1		Fixed a bug with table relations and selectboxes not correctly labelled when checking the "use formatted" checkbox 
+ 		and the field value is not an integer but alphanumeric.
+
+ 0.5.0		Better performance due to reduced number of SELECT querys.
+ 		If a related table is used more than once during the SELECT the values are taken form a prefilled array instead.
+ 		Additional checkbox to enable formatted output of labels, strings and dates instead of original values in search and export results.
+ 		This way values from query generator can be used in results too.
+
+ 0.4.2		Fixed a bug with table relations not working for admin users anymore.
+
+ 0.4.1		Fixed a bug with table relations, where the related table has no "delete" field.
+
+ 0.4.0		Changed checkbox behaviour from boolean/multiple to boolean/binary.
+		Binary is using "equals/does not equal" and "contains/does not contain" only.
+
+		Added support for multiple tables with DB relations.
+		Tablenames will be used as a prefix for the uid based on TCA settings then.
+		If the record omits the prefix for the first table this is recognized too.
+
+		If the label field for a DB relation is a select type itself using labels from an items array, 
+		these labels are used instead of the original values now.
+
+ 0.3.0		"Make query" now recognizes the following TCA field types:
+ 				input (number, date or text)
+ 				check (boolean or multiple)
+ 				radio (multiple)
+ 				select (multiple or relation)
+ 				group (files or relation)
+ 				user, flex, passthrough, none, text (text)
+ 			Options for the types:
+ 				boolean (selectbox isTrue/isFalse)
+ 				multiple (selectbox using the original labels for the items)
+ 				relation (selectbox using labels taken from the corresponding table)
+ 				files (selectbox using filenames taken from the corresponding upload folder and all file extensions available)
+ 			TODO:
+ 				Use of correct MM relations where necessary
+ 				Multilanguage labels for the Backendform 
+ 
+ 0.2.4		Added a new icon 
+ 
+ 0.2.3		Fixed some naming errors
+  
+ 0.2.2		Fixed a bug with the main menu
+
+ 0.2.1		Fixed a bug "missing comma while using multiple DB mounts"
+  
+ 0.2.0		Removed some debug output and updated the code with extdeveval 
+ 
+ 0.1.0		Initial version based on t3lib_fullsearch which is used in DB check. 
+			Now working as a Web module for non admins too. 
+			Respects the DB mounts and other security settings for BE users 
+			to avoid searching in restricted areas. 
+			Corrected the handling of "OR" by setting some default brackets. 
